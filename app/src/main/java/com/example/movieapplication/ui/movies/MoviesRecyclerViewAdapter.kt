@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,10 @@ class MoviesRecyclerViewAdapter : ListAdapter<UiMovie, MoviesRecyclerViewAdapter
 
        fun bind(movie: UiMovie) {
            itemView.titleText.text = movie.title
-           itemView.budgetText.text = movie.budget
+           itemView.budgetText.apply {
+               text = movie.budget.toString()
+               isVisible = movie.budget != null
+           }
 
            // todo load image with glide
 

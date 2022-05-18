@@ -2,9 +2,13 @@ package com.example.movieapplication.ui.movies
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.isVisible
+import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import com.example.movieapplication.R
+import com.example.movieapplication.ui.extensions.showToast
 import com.example.movieapplication.ui.movies.models.UiMovie
 import kotlinx.android.synthetic.main.fragment_movies.*
 
@@ -20,6 +24,7 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
 
         setupRecyclerView()
 
+        Thread.sleep(2000)
         viewModel.loadMovies()
     }
 
@@ -32,14 +37,29 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
 
     override fun render(viewState: MoviesViewState) {
         when (viewState) {
-            // todo
+            is Loading -> showLoading()
+            is Error -> showError(viewState.errorMessage)
+            is MoviesLoaded -> showMovies(viewState.movies)
         }
-        // todo remove this
-        moviesRecyclerViewAdapter.submitList(
-            listOf(
-                UiMovie("1", "Title1", "1500"),
-                UiMovie("2", "2", "2")
-            )
-        )
+    }
+
+    override fun onEvent(event: OneShotEvent) {
+        when (event) {
+            is MoviesViewModel.FailedToUpdateEvent -> showToast(event.message)
+        }
+    }
+
+    private fun showLoading() {
+        moviesProgressBar.isVisible = true
+    }
+
+    private fun showError(message: String?) {
+        showToast(message)
+        moviesProgressBar.isVisible = false
+    }
+
+    private fun showMovies(movies: List<UiMovie>) {
+        moviesProgressBar.isVisible = false
+        moviesRecyclerViewAdapter.submitList(movies)
     }
 }
