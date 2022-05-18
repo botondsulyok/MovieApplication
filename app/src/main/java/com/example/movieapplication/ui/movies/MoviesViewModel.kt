@@ -1,4 +1,4 @@
-package com.example.movieapplication.ui.detailedmovie
+package com.example.movieapplication.ui.movies
 
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import javax.inject.Inject

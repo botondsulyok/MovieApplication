@@ -1,9 +1,8 @@
 package com.example.movieapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import co.zsmb.rainbowcake.navigation.SimpleNavActivity
-import com.example.movieapplication.ui.detailedmovie.MoviesFragment
+import com.example.movieapplication.ui.movies.MoviesFragment
 
 class MainActivity : SimpleNavActivity() {
 

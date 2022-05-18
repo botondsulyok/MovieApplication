@@ -1,4 +1,4 @@
-package com.example.movieapplication.ui.detailedmovie
+package com.example.movieapplication.ui.movies
 
 import com.example.movieapplication.domain.MoviesInteractor
 import javax.inject.Inject

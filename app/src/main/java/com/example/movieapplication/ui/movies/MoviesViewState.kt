@@ -1,4 +1,4 @@
-package com.example.movieapplication.ui.detailedmovie
+package com.example.movieapplication.ui.movies
 
 sealed class MoviesViewState
 
