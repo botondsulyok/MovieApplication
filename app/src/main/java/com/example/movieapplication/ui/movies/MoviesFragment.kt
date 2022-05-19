@@ -11,6 +11,7 @@ import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
+import com.bumptech.glide.Glide
 import com.example.movieapplication.R
 import com.example.movieapplication.ui.extensions.showToast
 import com.example.movieapplication.ui.movies.models.UiMovie
@@ -35,7 +36,7 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
     }
 
     private fun setListeners() {
-            moviesRefreshLayout.setOnRefreshListener {
+        moviesRefreshLayout.setOnRefreshListener {
             viewModel.updateMovies()
         }
     }
@@ -49,11 +50,17 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
         MaterialDialog(requireContext(), BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             customView(R.layout.view_details_dialog, scrollable = true, horizontalPadding = true)
             detailedMovieTitleText.text = movie.title
-            if(movie.voteAverage == null) {
+            if (movie.voteAverage == null) {
                 detailedMovieRatingBar.isVisible = false
             } else {
                 detailedMovieRatingBar.rating = movie.voteAverage.toFloat()
             }
+            Glide
+                .with(this@MoviesFragment.requireContext())
+                .load(movie.imageUrl)
+                .onlyRetrieveFromCache(true)
+                .placeholder(R.drawable.ic_baseline_image_24)
+                .into(detailedMovieImage)
         }
     }
 
@@ -72,7 +79,7 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
     }
 
     private fun showLoading() {
-        if(moviesRefreshLayout.isRefreshing.not()) moviesProgressBar.isVisible = true
+        if (moviesRefreshLayout.isRefreshing.not()) moviesProgressBar.isVisible = true
     }
 
     private fun showError(message: String?) {

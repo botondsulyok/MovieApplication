@@ -27,19 +27,18 @@ class MoviesRecyclerViewAdapter(
         holder.bind(getItem(position))
     }
 
-   inner class MovieViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
+   inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
        fun bind(movie: UiMovie) {
            itemView.titleText.text = movie.title
            itemView.budgetText.apply {
                text = movie.formattedBudget
-               isVisible = movie.formattedBudget != null
+               isVisible = movie.formattedBudget != null && movie.budget != 0L
            }
 
-           // todo load image with glide
            Glide
                .with(context)
-               .load("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg")
+               .load(movie.imageUrl)
                .placeholder(R.drawable.ic_baseline_image_24)
                .into(itemView.movieImage)
 

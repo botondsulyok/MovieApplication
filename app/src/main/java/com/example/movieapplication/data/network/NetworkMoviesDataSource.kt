@@ -45,7 +45,12 @@ class NetworkMoviesDataSource @Inject constructor() {
             title = title,
             budget = movie?.budget,
             releaseDate = releaseDate,
+            imageUrl = "$BASE_IMAGE_PATH${movie?.posterPath}",
             voteAverage = voteAverage
         )
+    }
+
+    companion object {
+        private const val BASE_IMAGE_PATH = "https://image.tmdb.org/t/p/w500/"
     }
 }

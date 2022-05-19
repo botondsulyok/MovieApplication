@@ -5,6 +5,7 @@ data class UiMovie(
     val title: String?,
     val budget: Long?,
     val releaseDate: String?,
+    val imageUrl: String?,
     val voteAverage: Double? = null,
     val formattedBudget: String? = null,
 )
