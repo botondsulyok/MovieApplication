@@ -39,7 +39,8 @@ class CacheMoviesDataSource @Inject constructor() {
             id = id,
             title = title,
             budget = budget,
-            releaseDate = releaseDate
+            releaseDate = releaseDate,
+            voteAverage = voteAverage
         )
     }
 
@@ -48,7 +49,8 @@ class CacheMoviesDataSource @Inject constructor() {
             id = id,
             title = title,
             budget = budget,
-            releaseDate = releaseDate
+            releaseDate = releaseDate,
+            voteAverage = voteAverage
         )
     }
 }

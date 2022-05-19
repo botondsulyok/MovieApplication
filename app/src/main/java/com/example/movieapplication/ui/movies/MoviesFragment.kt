@@ -7,10 +7,16 @@ import androidx.core.view.isVisible
 import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
+import com.afollestad.materialdialogs.LayoutMode
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.afollestad.materialdialogs.customview.customView
 import com.example.movieapplication.R
 import com.example.movieapplication.ui.extensions.showToast
 import com.example.movieapplication.ui.movies.models.UiMovie
 import kotlinx.android.synthetic.main.fragment_movies.*
+import kotlinx.android.synthetic.main.item_movie.view.*
+import kotlinx.android.synthetic.main.view_details_dialog.*
 
 class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
 
@@ -35,10 +41,20 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
     }
 
     private fun setupRecyclerView() {
-        moviesRecyclerViewAdapter = MoviesRecyclerViewAdapter().apply {
-            onMovieClicked = { }
-        }
+        moviesRecyclerViewAdapter = MoviesRecyclerViewAdapter(requireContext(), ::showDetailsDialog)
         moviesList.adapter = moviesRecyclerViewAdapter
+    }
+
+    private fun showDetailsDialog(movie: UiMovie) {
+        MaterialDialog(requireContext(), BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+            customView(R.layout.view_details_dialog, scrollable = true, horizontalPadding = true)
+            detailedMovieTitleText.text = movie.title
+            if(movie.voteAverage == null) {
+                detailedMovieRatingBar.isVisible = false
+            } else {
+                detailedMovieRatingBar.rating = movie.voteAverage.toFloat()
+            }
+        }
     }
 
     override fun render(viewState: MoviesViewState) {

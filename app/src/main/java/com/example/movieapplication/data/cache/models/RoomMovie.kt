@@ -8,5 +8,6 @@ data class RoomMovie(
     @PrimaryKey(autoGenerate = false) val id: Long?,
     val title: String?,
     val budget: Long?,
-    val releaseDate: String?
+    val releaseDate: String?,
+    val voteAverage: Double? = null,
 )

@@ -44,7 +44,8 @@ class NetworkMoviesDataSource @Inject constructor() {
             id = id,
             title = title,
             budget = movie?.budget,
-            releaseDate = releaseDate
+            releaseDate = releaseDate,
+            voteAverage = voteAverage
         )
     }
 }
