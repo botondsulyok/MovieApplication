@@ -4,6 +4,7 @@ import co.zsmb.rainbowcake.base.QueuedOneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import com.example.movieapplication.data.ResultFailure
 import com.example.movieapplication.data.ResultSuccess
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class MoviesViewModel @Inject constructor(
@@ -12,7 +13,14 @@ class MoviesViewModel @Inject constructor(
 
     fun loadMovies() = execute {
         viewState = Loading
-        // loadMoviesFromCache()
+        loadMoviesFromCache()
+        delay(1000)
+        viewState = Loading
+        loadMoviesFromNetwork()
+    }
+
+    fun updateMovies() = execute {
+        viewState = Loading
         loadMoviesFromNetwork()
     }
 
@@ -21,7 +29,7 @@ class MoviesViewModel @Inject constructor(
         if (result is ResultSuccess) {
             val movies = result.value
             viewState = MoviesLoaded(movies)
-            // moviesPresenter.cacheMovies(movies)
+            moviesPresenter.cacheMovies(movies)
         } else {
             postQueuedEvent(FailedToUpdateEvent())
         }

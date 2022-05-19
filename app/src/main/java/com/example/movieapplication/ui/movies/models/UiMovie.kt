@@ -4,4 +4,5 @@ data class UiMovie(
     val id: Long?,
     val title: String?,
     val budget: Long?,
+    val releaseDate: String?
 )

@@ -22,9 +22,16 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setListeners()
         setupRecyclerView()
 
         viewModel.loadMovies()
+    }
+
+    private fun setListeners() {
+            moviesRefreshLayout.setOnRefreshListener {
+            viewModel.updateMovies()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -49,16 +56,18 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
     }
 
     private fun showLoading() {
-        moviesProgressBar.isVisible = true
+        if(moviesRefreshLayout.isRefreshing.not()) moviesProgressBar.isVisible = true
     }
 
     private fun showError(message: String?) {
-        showToast(message)
         moviesProgressBar.isVisible = false
+        moviesRefreshLayout.isRefreshing = false
+        showToast(message)
     }
 
     private fun showMovies(movies: List<UiMovie>) {
         moviesProgressBar.isVisible = false
+        moviesRefreshLayout.isRefreshing = false
         moviesRecyclerViewAdapter.submitList(movies)
     }
 }

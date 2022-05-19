@@ -1,8 +1,8 @@
 package com.example.movieapplication.data.network
 
-import com.example.movieapplication.data.*
-import com.example.movieapplication.data.network.models.movie.MovieResponse
-import com.example.movieapplication.data.network.models.movies.MoviesResponse
+import com.example.movieapplication.data.Result
+import com.example.movieapplication.data.ResultFailure
+import com.example.movieapplication.data.ResultSuccess
 import com.example.movieapplication.data.network.models.movies.NetworkMoviesMovie
 import com.example.movieapplication.ui.movies.models.UiMovie
 import retrofit2.Retrofit
@@ -43,7 +43,8 @@ class NetworkMoviesDataSource @Inject constructor() {
         return UiMovie(
             id = id,
             title = title,
-            budget = movie?.budget
+            budget = movie?.budget,
+            releaseDate = releaseDate
         )
     }
 }
