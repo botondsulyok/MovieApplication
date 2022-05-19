@@ -15,17 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.mancj.materialsearchbar.MaterialSearchBar
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/moviesSearchBar"
-        style="@style/MaterialSearchBarLight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:mt_hint="@string/hint_search_by_title"
-        app:mt_maxSuggestionsCount="10"
-        app:mt_speechMode="false" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <View
         android:id="@+id/moviesSearchSeparator"

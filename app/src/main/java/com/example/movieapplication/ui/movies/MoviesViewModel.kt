@@ -50,6 +50,18 @@ class MoviesViewModel @Inject constructor(
         }
     }
 
+    fun searchArticleByTitle(title: String) = execute {
+        val result = moviesPresenter.searchMoviesByTitleInCache(title)
+        viewState = when (result) {
+            is ResultSuccess -> {
+                MoviesLoaded(result.value)
+            }
+            is ResultFailure -> {
+                Error(result.reason)
+            }
+        }
+    }
+
     data class FailedToUpdateEvent(val message: String = FAILED_TO_UPDATE_MESSAGE) : QueuedOneShotEvent
 
     companion object {

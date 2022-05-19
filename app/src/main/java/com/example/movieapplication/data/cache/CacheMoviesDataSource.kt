@@ -34,6 +34,15 @@ class CacheMoviesDataSource @Inject constructor() {
         }
     }
 
+    fun searchMoviesByTitle(title: String): Result<List<UiMovie>, String> {
+        return try {
+            val movies = moviesDao.searchByTitle(title).map { it.toUiMovie() }
+            ResultSuccess(movies)
+        } catch (e: Exception) {
+            ResultFailure(e.message.toString())
+        }
+    }
+
     private fun UiMovie.toRoomMovie(): RoomMovie {
         return RoomMovie(
             id = id,

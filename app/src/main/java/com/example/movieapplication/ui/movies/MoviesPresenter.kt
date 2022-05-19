@@ -26,7 +26,7 @@ class MoviesPresenter @Inject constructor(
     }
 
     suspend fun searchMoviesByTitleInCache(title: String): Result<List<UiMovie>, String> = withIOContext {
-        TODO()
+        handleInteractorResponse(moviesInteractor.searchMoviesByTitleInCache(title))
     }
 
     private fun handleInteractorResponse(result: Result<List<UiMovie>, String>): Result<List<UiMovie>, String> {

@@ -25,4 +25,8 @@ class MoviesInteractor @Inject constructor(
     fun cacheMovies(movies: List<UiMovie>) {
         cacheMoviesDataSource.cacheMovies(movies)
     }
+
+    fun searchMoviesByTitleInCache(title: String): Result<List<UiMovie>, String> {
+        return cacheMoviesDataSource.searchMoviesByTitle(title)
+    }
 }

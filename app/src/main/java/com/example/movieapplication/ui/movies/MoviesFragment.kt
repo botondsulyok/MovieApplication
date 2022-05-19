@@ -2,7 +2,8 @@ package com.example.movieapplication.ui.movies
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import android.widget.SearchView
+import androidx.appcompat.widget.SearchView.*
 import androidx.core.view.isVisible
 import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
@@ -16,7 +17,6 @@ import com.example.movieapplication.R
 import com.example.movieapplication.ui.extensions.showToast
 import com.example.movieapplication.ui.movies.models.UiMovie
 import kotlinx.android.synthetic.main.fragment_movies.*
-import kotlinx.android.synthetic.main.item_movie.view.*
 import kotlinx.android.synthetic.main.view_details_dialog.*
 
 class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
@@ -38,6 +38,21 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
     private fun setListeners() {
         moviesRefreshLayout.setOnRefreshListener {
             viewModel.updateMovies()
+        }
+        moviesSearchBar.apply {
+            onActionViewExpanded()
+            clearFocus()
+            queryHint = getString(R.string.hint_search_by_title)
+            setOnQueryTextListener(object : OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    viewModel.searchArticleByTitle(query.toString())
+                    return true
+                }
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    viewModel.searchArticleByTitle(newText.toString())
+                    return true
+                }
+            })
         }
     }
 
