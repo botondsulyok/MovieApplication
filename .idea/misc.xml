@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidProjects/MovieApplication/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.271" />
+        <entry key="..\:/AndroidProjects/MovieApplication/app/src/main/res/drawable/ic_baseline_search_24_white.xml" value="0.271" />
         <entry key="..\:/AndroidProjects/MovieApplication/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/AndroidProjects/MovieApplication/app/src/main/res/layout/fragment_movies.xml" value="0.22" />
         <entry key="..\:/AndroidProjects/MovieApplication/app/src/main/res/layout/item_movie.xml" value="0.358695652173913" />

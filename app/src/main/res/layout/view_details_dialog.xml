@@ -26,6 +26,7 @@
         android:layout_marginTop="@dimen/margin_large"
         android:focusable="false"
         android:isIndicator="true"
+        android:progressTint="@color/yellow"
         android:max="10"
         android:numStars="10"
         android:stepSize="0.5"

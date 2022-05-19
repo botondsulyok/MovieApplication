@@ -10,6 +10,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:elevation="24dp"
+        android:indeterminateTint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,6 +19,8 @@
     <androidx.appcompat.widget.SearchView
         android:id="@+id/moviesSearchBar"
         android:layout_width="0dp"
+        android:theme="@style/SearchViewStyle"
+        android:foregroundTint="?attr/colorOnPrimary"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

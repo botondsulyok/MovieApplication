@@ -14,7 +14,6 @@ class MoviesViewModel @Inject constructor(
     fun loadMovies() = execute {
         viewState = Loading
         loadMoviesFromCache()
-        delay(1000)
         viewState = Loading
         loadMoviesFromNetwork()
     }
@@ -50,7 +49,7 @@ class MoviesViewModel @Inject constructor(
         }
     }
 
-    fun searchArticleByTitle(title: String) = execute {
+    fun searchMoviesByTitle(title: String) = execute {
         val result = moviesPresenter.searchMoviesByTitleInCache(title)
         viewState = when (result) {
             is ResultSuccess -> {

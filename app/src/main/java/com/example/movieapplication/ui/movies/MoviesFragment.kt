@@ -2,7 +2,6 @@ package com.example.movieapplication.ui.movies
 
 import android.os.Bundle
 import android.view.View
-import android.widget.SearchView
 import androidx.appcompat.widget.SearchView.*
 import androidx.core.view.isVisible
 import co.zsmb.rainbowcake.base.OneShotEvent
@@ -45,11 +44,11 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
             queryHint = getString(R.string.hint_search_by_title)
             setOnQueryTextListener(object : OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    viewModel.searchArticleByTitle(query.toString())
+                    viewModel.searchMoviesByTitle(query.toString())
                     return true
                 }
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    viewModel.searchArticleByTitle(newText.toString())
+                    viewModel.searchMoviesByTitle(newText.toString())
                     return true
                 }
             })
