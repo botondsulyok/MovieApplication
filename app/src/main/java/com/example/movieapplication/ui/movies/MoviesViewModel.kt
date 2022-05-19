@@ -21,7 +21,7 @@ class MoviesViewModel @Inject constructor(
         if (result is ResultSuccess) {
             val movies = result.value
             viewState = MoviesLoaded(movies)
-            moviesPresenter.cacheMovies(movies)
+            // moviesPresenter.cacheMovies(movies)
         } else {
             postQueuedEvent(FailedToUpdateEvent())
         }

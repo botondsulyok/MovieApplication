@@ -17,6 +17,6 @@ interface MoviesApi {
     @GET("3/movie/popular/")
     fun getMovies(@Query("api_key") apyKey: String = Credentials.API_KEY): Call<MoviesResponse>
 
-    @GET("3/movie/")
+    @GET("3/movie/{id}")
     fun getMovie(@Path("id") id: Long?, @Query("api_key") apyKey: String = Credentials.API_KEY): Call<MovieResponse>
 }

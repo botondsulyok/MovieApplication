@@ -24,7 +24,6 @@ class MoviesFragment : RainbowCakeFragment<MoviesViewState, MoviesViewModel>() {
 
         setupRecyclerView()
 
-        Thread.sleep(2000)
         viewModel.loadMovies()
     }
 

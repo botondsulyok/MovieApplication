@@ -9,7 +9,7 @@ data class NetworkMoviesMovie(
     @Json(name = "backdrop_path") val backdropPath: String? = null,
     @Json(name = "genre_ids") val genreIDS: List<Long>? = null,
     val id: Long? = null,
-    @Json(name = "original_language") val originalLanguage: OriginalLanguage? = null,
+    @Json(name = "original_language") val originalLanguage: String? = null,
     @Json(name = "original_title") val originalTitle: String? = null,
     val overview: String? = null,
     val popularity: Double? = null,
@@ -20,19 +20,3 @@ data class NetworkMoviesMovie(
     @Json(name = "vote_average") val voteAverage: Double? = null,
     @Json(name = "vote_count") val voteCount: Long? = null
 )
-
-@JsonClass(generateAdapter = true)
-enum class OriginalLanguage(val value: String) {
-    En("en"),
-    Es("es"),
-    Fr("fr");
-
-    companion object {
-        public fun fromValue(value: String): OriginalLanguage = when (value) {
-            "en" -> En
-            "es" -> Es
-            "fr" -> Fr
-            else -> throw IllegalArgumentException()
-        }
-    }
-}
